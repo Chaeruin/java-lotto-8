@@ -31,6 +31,10 @@ public class Lotto {
         return new Lotto(winningNumberDto.winningNumbers());
     }
 
+    public static Lotto create(LottoNumberGenerator generator) {
+        return new Lotto(generator.generate());
+    }
+
     private void validate(List<Integer> numbers) {
         validateNumbersSize(numbers);
         validateNumbersInRange(numbers);
