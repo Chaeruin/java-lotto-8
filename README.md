@@ -78,8 +78,11 @@
 - [X] WinningNumberDto
     - [X] List<Integer> 필드로 이루어짐 <br><br>
   
-- [ ] LottoNumberGenerator
-    - [ ] 로또 랜덤 발행(로또 객체로 저장) - 1이상 45 이하 6개 숫자로 (미중복)생성 <br><br>
+- [X] LottoNumberGenerator
+    - [X] 로또 랜덤 발행(로또 객체로 저장) - 1이상 45 이하 6개 숫자로 (미중복)생성 <br><br>
+
+- [X] LottoNumber (Enum)
+    - [X] 1, 45, 6 등 로또 관련 상수 별도 선언 
 
 - [X] BonusNumber
     - [X] 1 이상 45 이하가 아니면 예외 처리
