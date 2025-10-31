@@ -114,8 +114,9 @@
 - [ ] ReturnRate
     - [ ] 구매 금액 대비 당첨금 합에 대하여 총 수익률 계산 (소수점 둘째 자리에서 반올림) <br><br>
 
-- [ ] LottoMachine
+- [ ] LottoMachine (Controller)
     - [ ] 구입 금액에 따라 로또 개수로 변환 후, 랜덤 로또 생성 (반환) <br><br>
 
-- [ ] TotalPrizeCalculator
-    - [ ] 모든 당첨 내역에 대해 총 당첨금을 계산
+- [ ] TotalPrize
+    - [ ] 모든 당첨 항목에 대한 당첨 내역
+    - [ ] 총 당첨금을 계산
