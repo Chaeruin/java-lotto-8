@@ -75,8 +75,8 @@
     - [ ] 로또 리스트 (6개) 값과 당첨 번호 리스트 (6개) 비교, 일치 갯수 반환 
     - [ ] WinningNumberDto -> Lotto로 변환하는 정적 팩터리 메서드 from 생성 <br><br>
 
-- [ ] WinningNumberDto
-    - [ ] List<Integer> 필드로 이루어짐 <br><br>
+- [X] WinningNumberDto
+    - [X] List<Integer> 필드로 이루어짐 <br><br>
   
 - [ ] LottoNumberGenerator
     - [ ] 로또 랜덤 발행(로또 객체로 저장) - 1이상 45 이하 6개 숫자로 (미중복)생성 <br><br>
@@ -85,16 +85,16 @@
     - [ ] 1 이상 45 이하가 아니면 예외 처리
     - [ ] BonusNumberDto -> BonusNumber로 변환하는 정적 팩터리 메서드 from 생성 <br><br>
 
-- [ ] BonusNumberDto
-    - [ ] int number 필드로 이루어짐 <br><br>
+- [X] BonusNumberDto
+    - [X] int number 필드로 이루어짐 <br><br>
 
 - [ ] Amount
     - [ ] 입력 값이 100000원 초과 (100회 초과)일 경우 예외 처리 
     - [ ] 1000원 단위로 나눠지지 않을 경우 예외 처리 
     - [ ] AmountDto -> Amount로 변환하는 정적 팩터리 메서드 from 생성 <br><br>
 
-- [ ] AmountDto
-    - [ ] int amount 필드로 이루어짐 <br><br>
+- [X] AmountDto
+    - [X] int amount 필드로 이루어짐 <br><br>
 
 - [ ] Issue
     - [ ] 1개의 로또 * n 개 발행 - 중복되지 않는 6개의 list 숫자 발행 <br><br>
