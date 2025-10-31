@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.dto.BonusNumberDto;
 import lotto.exception.ValidateErrorCode;
 
 public class BonusNumber {
@@ -13,6 +14,10 @@ public class BonusNumber {
 
     public int getBonusNumber() {
         return bonusNumber;
+    }
+
+    public static BonusNumber from(BonusNumberDto bonusNumberDto) {
+        return new BonusNumber(bonusNumberDto.bonusNumber());
     }
 
     private void validate(int bonusNumber) {
