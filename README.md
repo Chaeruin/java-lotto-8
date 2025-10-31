@@ -99,8 +99,8 @@
 - [X] AmountDto
     - [X] int amount 필드로 이루어짐 <br><br>
 
-- [ ] Issue
-    - [ ] 1개의 로또 * n 개 발행 - 중복되지 않는 6개의 list 숫자 발행 <br><br>
+- [X] Issue
+    - [X] 1개의 로또 * n 개 발행 - 중복되지 않는 6개의 list 숫자 발행 <br><br>
 
 - [X] Prize (Enum)  
     - [X] 당첨 기준 갯수와 금액 저장 (갯수, 보너스볼 여부, 금액) <br><br> 
