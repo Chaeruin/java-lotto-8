@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 import lotto.dto.WinningNumberDto;
+import lotto.enums.LottoNumber;
 import lotto.exception.ValidateErrorCode;
 
 public class Lotto {
@@ -37,7 +38,7 @@ public class Lotto {
     }
 
     private void validateNumbersSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LottoNumber.LOTTO_SIZE.getNumber()) {
             throw new IllegalArgumentException(ValidateErrorCode.LOTTO_INTEGER_LIST_SIZE_IS_NOT_VALID.getErrorMessage());
         }
     }
@@ -55,6 +56,6 @@ public class Lotto {
     }
 
     private boolean isInRange(int num) {
-        return num >= 1 && num <= 45;
+        return num >= LottoNumber.MIN_LOTTO_NUMBER.getNumber() && num <= LottoNumber.MAX_LOTTO_NUMBER.getNumber();
     }
 }
