@@ -12,8 +12,8 @@ public class Amount {
         this.amount = amount;
     }
 
-    public int getAmount() {
-        return amount;
+    public int getCountByAmount() {
+        return amount / 1000;
     }
 
     public static Amount from(AmountDto amountDto) {
