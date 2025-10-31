@@ -2,6 +2,7 @@ package lotto.util;
 
 import java.util.Arrays;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import lotto.dto.AmountDto;
 import lotto.dto.BonusNumberDto;
 import lotto.dto.WinningNumberDto;
@@ -14,7 +15,7 @@ public class InputParser {
         return new WinningNumberDto(
                 Arrays.stream(input.split(","))
                         .map(Integer::parseInt)
-                        .toList()
+                        .collect(Collectors.toList())
         );
     }
 
