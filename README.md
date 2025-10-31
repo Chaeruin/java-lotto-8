@@ -81,17 +81,17 @@
 - [ ] LottoNumberGenerator
     - [ ] 로또 랜덤 발행(로또 객체로 저장) - 1이상 45 이하 6개 숫자로 (미중복)생성 <br><br>
 
-- [ ] BonusNumber
-    - [ ] 1 이상 45 이하가 아니면 예외 처리
-    - [ ] BonusNumberDto -> BonusNumber로 변환하는 정적 팩터리 메서드 from 생성 <br><br>
+- [X] BonusNumber
+    - [X] 1 이상 45 이하가 아니면 예외 처리
+    - [X] BonusNumberDto -> BonusNumber로 변환하는 정적 팩터리 메서드 from 생성 <br><br>
 
 - [X] BonusNumberDto
     - [X] int number 필드로 이루어짐 <br><br>
 
-- [ ] Amount
-    - [ ] 입력 값이 100000원 초과 (100회 초과)일 경우 예외 처리 
-    - [ ] 1000원 단위로 나눠지지 않을 경우 예외 처리 
-    - [ ] AmountDto -> Amount로 변환하는 정적 팩터리 메서드 from 생성 <br><br>
+- [X] Amount
+    - [X] 입력 값이 100000원 초과 (100회 초과)일 경우 예외 처리 
+    - [X] 1000원 단위로 나눠지지 않을 경우 예외 처리 
+    - [X] AmountDto -> Amount로 변환하는 정적 팩터리 메서드 from 생성 <br><br>
 
 - [X] AmountDto
     - [X] int amount 필드로 이루어짐 <br><br>
