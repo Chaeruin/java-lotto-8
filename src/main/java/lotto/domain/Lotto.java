@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.dto.WinningNumberDto;
 import lotto.exception.ValidateErrorCode;
 
 public class Lotto {
@@ -13,6 +14,20 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return List.copyOf(numbers); // 외부에 내부 컬렉션 노출 방지
+    }
+
+    public int containsNumbers(Lotto lotto) {
+        return (int) lotto.getNumbers().stream()
+                .filter(this::contains)
+                .count();
+    }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
+
+    public static Lotto from(WinningNumberDto winningNumberDto) {
+        return new Lotto(winningNumberDto.winningNumbers());
     }
 
     private void validate(List<Integer> numbers) {
