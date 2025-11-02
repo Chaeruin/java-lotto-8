@@ -39,7 +39,6 @@ public class LottoMachine {
             TotalPrize totalPrize = winningLottery.getTotalWinnings(lottery, winningNumber, bonusNumber);
 
             OutputView.printTotalPrize(TotalPrizeResponseDto.of(totalPrize));
-
             OutputView.printReturnRate(returnRate.getReturnRate(amount, totalPrize.calculateTotalPrizeAmount()));
         } finally {
             InputView.closeConsole();
