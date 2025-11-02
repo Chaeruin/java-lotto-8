@@ -31,8 +31,7 @@ public class LottoMachine {
             Amount amount = getAmount();
             List<Lotto> lottery = issue.issueLottery(amount);
 
-            List<LottoResponseDto> lottoResponseDto = getLottoResponseDto(lottery);
-            OutputView.printLottery(amount.getCountByAmount(), lottoResponseDto);
+            printLotteryByLottoResponse(lottery, amount);
 
             Lotto winningNumber = getWinningNumber();
             BonusNumber bonusNumber = getBonusNumber();
@@ -45,6 +44,11 @@ public class LottoMachine {
         } finally {
             InputView.closeConsole();
         }
+    }
+
+    private void printLotteryByLottoResponse(List<Lotto> lottery, Amount amount) {
+        List<LottoResponseDto> lottoResponseDto = getLottoResponseDto(lottery);
+        OutputView.printLottery(amount.getCountByAmount(), lottoResponseDto);
     }
 
     private Amount getAmount() {
