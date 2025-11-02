@@ -34,25 +34,19 @@ public class LottoMachine {
 
     public void run() {
         try {
-            // 구입 금액 입력
             Amount amount = getAmount();
-            // 구입 금액에 따른 로또 발행
             List<Lotto> lottery = issue.issueLottery(amount);
-            // 발행 로또 리스트 출력
+
             List<LottoResponseDto> lottoResponseDto = getLottoResponseDto(lottery);
             OutputView.printLottery(amount.getCountByAmount(), lottoResponseDto);
 
-            // 당첨 번호 입력
             Lotto winningNumber = getWinningNumber();
-            // 보너스 번호 입력
             BonusNumber bonusNumber = getBonusNumber();
 
-            // 로직 !@#$!@#$
             TotalPrize totalPrize = winningLottery.getTotalWinnings(lottery, winningNumber, bonusNumber);
-            // 당첨 통계 포멧애 맞게 출력
+
             OutputView.printTotalPrize(TotalPrizeResponseDto.of(totalPrize));
 
-            // 수익률 출력
             OutputView.printReturnRate(returnRate.getReturnRate(amount, totalPrize.calculateTotalPrizeAmount()));
         } finally {
             InputView.closeConsole();
