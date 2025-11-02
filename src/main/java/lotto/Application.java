@@ -14,7 +14,7 @@ public class Application {
         ReturnRate returnRate = new ReturnRate();
         WinningLottery winningLottery = new WinningLottery();
 
-        LottoMachine lottoMachine = new LottoMachine(generator, issue, returnRate, winningLottery);
+        LottoMachine lottoMachine = new LottoMachine(issue, returnRate, winningLottery);
 
         lottoMachine.run();
     }

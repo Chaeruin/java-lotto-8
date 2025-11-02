@@ -1,13 +1,10 @@
 package lotto.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Amount;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
-import lotto.domain.LottoNumberGenerator;
 import lotto.domain.TotalPrize;
-import lotto.dto.AmountDto;
 import lotto.dto.LottoResponseDto;
 import lotto.dto.TotalPrizeResponseDto;
 import lotto.service.Issue;
@@ -19,14 +16,11 @@ import lotto.view.OutputView;
 
 public class LottoMachine {
 
-    private final LottoNumberGenerator generator;
     private final Issue issue;
     private final ReturnRate returnRate;
     private final WinningLottery winningLottery;
 
-    public LottoMachine(LottoNumberGenerator generator, Issue issue,
-                        ReturnRate returnRate, WinningLottery winningLottery) {
-        this.generator = generator;
+    public LottoMachine(Issue issue, ReturnRate returnRate, WinningLottery winningLottery) {
         this.issue = issue;
         this.returnRate = returnRate;
         this.winningLottery = winningLottery;
