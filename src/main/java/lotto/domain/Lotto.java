@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Comparator;
 import java.util.List;
 import lotto.dto.WinningNumberDto;
 import lotto.enums.LottoNumber;
@@ -10,7 +11,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = sortedNumbers(numbers);
     }
 
     public List<Integer> getNumbers() {
@@ -33,6 +34,10 @@ public class Lotto {
 
     public static Lotto create(LottoNumberGenerator generator) {
         return new Lotto(generator.generate());
+    }
+
+    private List<Integer> sortedNumbers(List<Integer> numbers) {
+        return numbers.stream().sorted(Comparator.naturalOrder()).toList();
     }
 
     private void validate(List<Integer> numbers) {
