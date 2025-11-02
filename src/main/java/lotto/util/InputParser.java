@@ -49,7 +49,8 @@ public class InputParser {
                         try {
                             Integer.parseInt(s);
                         } catch (NumberFormatException e) {
-                            throw new IllegalArgumentException(ParseErrorCode.WINNING_NUMBER_PARSING_ERROR.getErrorMessage());
+                            throw new IllegalArgumentException(
+                                    ParseErrorCode.WINNING_NUMBER_PARSING_ERROR.getErrorMessage());
                         }
                     });
         }
@@ -60,7 +61,8 @@ public class InputParser {
                         try {
                             Integer.parseInt(s);
                         } catch (NumberFormatException e) {
-                            throw new IllegalArgumentException(ParseErrorCode.WINNING_NUMBER_IS_NOT_INT.getErrorMessage());
+                            throw new IllegalArgumentException(
+                                    ParseErrorCode.WINNING_NUMBER_IS_NOT_INT.getErrorMessage());
                         }
                     });
         }
