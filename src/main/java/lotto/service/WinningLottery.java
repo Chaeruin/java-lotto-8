@@ -22,7 +22,7 @@ public class WinningLottery {
         return totalPrize;
     }
 
-    public Prize compareWinningDetails(Lotto lotto, Lotto winningNumber, BonusNumber bonusNumber) {
+    private Prize compareWinningDetails(Lotto lotto, Lotto winningNumber, BonusNumber bonusNumber) {
         int winningCount = lotto.containsNumbers(winningNumber);
         boolean isBonus = false;
         if (winningCount == 5) {
@@ -32,7 +32,7 @@ public class WinningLottery {
         return matchPrize(winningCount, isBonus);
     }
 
-    public void addWinningDetails(TotalPrize totalPrize, Prize winningPrize) {
+    private void addWinningDetails(TotalPrize totalPrize, Prize winningPrize) {
         if (winningPrize == null) {
             return;
         }

@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
 import lotto.enums.Prize;
@@ -10,6 +11,8 @@ public class TotalPrize {
 
     public TotalPrize() {
         winnings = new EnumMap<>(Prize.class);
+        Arrays.stream(Prize.values())
+                .forEach(prize -> winnings.put(prize, 0));
     }
 
     public void addPrize(Prize prize, int count) {
