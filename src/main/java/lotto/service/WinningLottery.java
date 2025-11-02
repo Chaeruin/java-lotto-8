@@ -1,6 +1,7 @@
 package lotto.service;
 
 import java.util.Arrays;
+import java.util.List;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.TotalPrize;
@@ -10,6 +11,15 @@ import lotto.exception.ValidateErrorCode;
 public class WinningLottery {
 
     private final int WINNING_COUNT = 1;
+
+    public TotalPrize getTotalWinnings(List<Lotto> lottery, Lotto winningNumber, BonusNumber bonusNumber) {
+        TotalPrize totalPrize = new TotalPrize();
+        lottery.stream()
+                .map(lotto -> compareWinningDetails(lotto, winningNumber, bonusNumber))
+                .forEach(prize -> addWinningDetails(totalPrize, prize));
+
+        return totalPrize;
+    }
 
     public Prize compareWinningDetails(Lotto lotto, Lotto winningNumber, BonusNumber bonusNumber) {
         validateDuplicateNumber(winningNumber, bonusNumber);
