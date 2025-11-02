@@ -13,6 +13,7 @@ public class WinningLottery {
     private final int WINNING_COUNT = 1;
 
     public TotalPrize getTotalWinnings(List<Lotto> lottery, Lotto winningNumber, BonusNumber bonusNumber) {
+        validateDuplicateNumber(winningNumber, bonusNumber);
         TotalPrize totalPrize = new TotalPrize();
         lottery.stream()
                 .map(lotto -> compareWinningDetails(lotto, winningNumber, bonusNumber))
@@ -22,7 +23,6 @@ public class WinningLottery {
     }
 
     public Prize compareWinningDetails(Lotto lotto, Lotto winningNumber, BonusNumber bonusNumber) {
-        validateDuplicateNumber(winningNumber, bonusNumber);
         int winningCount = lotto.containsNumbers(winningNumber);
         boolean isBonus = false;
         if (winningCount == 5) {
