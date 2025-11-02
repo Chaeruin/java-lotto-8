@@ -1,6 +1,7 @@
 package lotto.view;
 
 import java.text.DecimalFormat;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -32,18 +33,26 @@ public class OutputView {
         System.out.println("당첨 통계");
         System.out.println("---");
         Map<Prize, Integer> winnings = totalPrize.winnings();
-        winnings.forEach((key, value) -> {
-            if (!key.isBonus()) {
-                System.out.printf("%d개 일치 (%s원) - %d개\n", key.getBalls(), df.format(key.getPrizeMoney()), value);
-            }
-            if (key.isBonus()) {
-                System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n",
-                        key.getBalls(), df.format(key.getPrizeMoney()), value);
-            }
-        });
+        printWinningMap(winnings);
+    }
+
+    private static void printWinningMap(Map<Prize, Integer> winnings) {
+        winnings.entrySet().stream()
+                .sorted(Comparator.comparingInt(entry -> entry.getKey().getBalls()))
+                .forEach(entry -> {
+                    Prize prize = entry.getKey();
+                    int count = entry.getValue();
+                    if (!prize.isBonus()) {
+                        System.out.printf("%d개 일치 (%s원) - %d개\n",
+                                prize.getBalls(), df.format(prize.getPrizeMoney()), count);
+                    }
+                    if (prize.isBonus()) {
+                        System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n",
+                                prize.getBalls(), df.format(prize.getPrizeMoney()), count);
+                    }});
     }
 
     public static void printReturnRate(double returnRate) {
-        System.out.printf("총 수익률은 %f%%입니다.", returnRate);
+        System.out.printf("총 수익률은 %.1f%%입니다.", returnRate);
     }
 }
