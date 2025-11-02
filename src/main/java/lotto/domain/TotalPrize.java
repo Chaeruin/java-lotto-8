@@ -15,6 +15,10 @@ public class TotalPrize {
                 .forEach(prize -> winnings.put(prize, 0));
     }
 
+    public Map<Prize, Integer> getWinnings() {
+        return Map.copyOf(winnings);
+    }
+
     public void addPrize(Prize prize, int count) {
         winnings.put(prize, winnings.getOrDefault(prize, 0) + count);
     }
