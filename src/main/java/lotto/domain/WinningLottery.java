@@ -1,10 +1,7 @@
-package lotto.service;
+package lotto.domain;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.domain.BonusNumber;
-import lotto.domain.Lotto;
-import lotto.domain.TotalPrize;
 import lotto.enums.Prize;
 import lotto.exception.ValidateErrorCode;
 

@@ -1,10 +1,7 @@
-package lotto.service;
+package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.domain.Amount;
-import lotto.domain.Lotto;
-import lotto.domain.LottoNumberGenerator;
 
 public class Issue {
 

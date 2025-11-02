@@ -3,9 +3,9 @@ package lotto;
 import lotto.controller.LottoMachine;
 import lotto.domain.LottoNumberGenerator;
 import lotto.domain.RandomLottoNumberGenerator;
-import lotto.service.Issue;
-import lotto.service.ReturnRate;
-import lotto.service.WinningLottery;
+import lotto.domain.Issue;
+import lotto.domain.ReturnRate;
+import lotto.domain.WinningLottery;
 
 public class Application {
     public static void main(String[] args) {

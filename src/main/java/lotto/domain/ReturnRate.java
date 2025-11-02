@@ -1,6 +1,4 @@
-package lotto.service;
-
-import lotto.domain.Amount;
+package lotto.domain;
 
 public class ReturnRate {
     
