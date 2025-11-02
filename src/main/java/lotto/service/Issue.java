@@ -2,6 +2,7 @@ package lotto.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.Amount;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumberGenerator;
 
@@ -13,7 +14,8 @@ public class Issue {
         this.generator = generator;
     }
 
-    public List<Lotto> issueLottery(int count) {
+    public List<Lotto> issueLottery(Amount amount) {
+        int count = amount.getCountByAmount();
         List<Lotto> lottery = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             lottery.add(Lotto.create(generator));
