@@ -15,6 +15,7 @@ import lotto.service.ReturnRate;
 import lotto.service.WinningLottery;
 import lotto.util.InputParser;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoMachine {
 
@@ -39,7 +40,7 @@ public class LottoMachine {
             List<Lotto> lottery = issue.issueLottery(amount);
             // 발행 로또 리스트 출력
             List<LottoResponseDto> lottoResponseDto = getLottoResponseDto(lottery);
-
+            OutputView.printLottery(amount.getCountByAmount(), lottoResponseDto);
 
             // 당첨 번호 입력
             Lotto winningNumber = getWinningNumber();
@@ -49,10 +50,10 @@ public class LottoMachine {
             // 로직 !@#$!@#$
             TotalPrize totalPrize = winningLottery.getTotalWinnings(lottery, winningNumber, bonusNumber);
             // 당첨 통계 포멧애 맞게 출력
-            TotalPrizeResponseDto totalPrizeResponseDto = TotalPrizeResponseDto.of(totalPrize);
+            OutputView.printTotalPrize(TotalPrizeResponseDto.of(totalPrize));
 
             // 수익률 출력
-            double returnRating = returnRate.getReturnRate(amount, totalPrize.calculateTotalPrizeAmount());
+            OutputView.printReturnRate(returnRate.getReturnRate(amount, totalPrize.calculateTotalPrizeAmount()));
         } finally {
             InputView.closeConsole();
         }
