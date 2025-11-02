@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.enums.LottoNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -24,14 +25,14 @@ class LottoTest {
     @Test
     @DisplayName("로또 번호에 1 이상 45 이하가 아닌 요소가 있을 경우 예외_1 미만")
     void test1() {
-        assertThatThrownBy(() -> new Lotto(List.of(0, 2, 3, 4, 5, 45)))
+        assertThatThrownBy(() -> new Lotto(List.of(LottoNumber.MIN_LOTTO_NUMBER.getNumber() - 1, 2, 3, 4, 5, 45)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     @DisplayName("로또 번호에 1 이상 45 이하가 아닌 요소가 있을 경우 예외_45 초과")
     void test2() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, LottoNumber.MAX_LOTTO_NUMBER.getNumber() + 1)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
