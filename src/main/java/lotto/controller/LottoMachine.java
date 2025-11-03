@@ -1,15 +1,17 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.domain.Amount;
-import lotto.domain.BonusNumber;
-import lotto.domain.Lotto;
-import lotto.domain.TotalPrize;
+import lotto.dto.AmountDto;
+import lotto.dto.BonusNumberDto;
 import lotto.dto.LottoResponseDto;
 import lotto.dto.TotalPrizeResponseDto;
 import lotto.domain.Issue;
 import lotto.domain.ReturnRate;
 import lotto.domain.WinningLottery;
+import lotto.dto.WinningNumberDto;
+import lotto.mapper.AmountMapper;
+import lotto.mapper.BonusNumberMapper;
+import lotto.mapper.LottoMapper;
 import lotto.util.InputParser;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -28,61 +30,67 @@ public class LottoMachine {
 
     public void run() {
         try {
-            Amount amount = getAmount();
-            List<Lotto> lottery = issue.issueLottery(amount);
+            AmountDto amount = getAmount();
+            List<LottoResponseDto> lottery = LottoMapper.toDto(issue.issueLottery(AmountMapper.toEntity(amount)));
 
             printLotteryByLottoResponse(lottery, amount);
 
-            Lotto winningNumber = getWinningNumber();
-            BonusNumber bonusNumber = getBonusNumber();
+            WinningNumberDto winningNumber = getWinningNumber();
+            BonusNumberDto bonusNumber = getBonusNumber();
 
-            TotalPrize totalPrize = winningLottery.getTotalWinnings(lottery, winningNumber, bonusNumber);
+            TotalPrizeResponseDto totalPrize = TotalPrizeResponseDto.of(winningLottery.getTotalWinnings(
+                            LottoMapper.toEntityList(lottery), LottoMapper.toEntity(winningNumber),
+                            BonusNumberMapper.toEntity(bonusNumber)));
 
-            OutputView.printTotalPrize(TotalPrizeResponseDto.of(totalPrize));
-            OutputView.printReturnRate(returnRate.getReturnRate(amount, totalPrize.calculateTotalPrizeAmount()));
+            printResult(totalPrize, amount);
         } finally {
             InputView.closeConsole();
         }
     }
 
-    private void printLotteryByLottoResponse(List<Lotto> lottery, Amount amount) {
-        List<LottoResponseDto> lottoResponseDto = getLottoResponseDto(lottery);
-        OutputView.printLottery(amount.getCountByAmount(), lottoResponseDto);
+    private void printResult(TotalPrizeResponseDto totalPrize, AmountDto amount) {
+        OutputView.printTotalPrize(totalPrize);
+        OutputView.printReturnRate(returnRate.getReturnRate(
+                AmountMapper.toEntity(amount), totalPrize.totalPrizeMoney()));
     }
 
-    private Amount getAmount() {
+    private void printLotteryByLottoResponse(List<LottoResponseDto> lottoResponseDto, AmountDto amount) {
+        OutputView.printLottery(AmountMapper.toEntity(amount).getCountByAmount(), lottoResponseDto);
+    }
+
+    private AmountDto getAmount() {
         while (true) {
             try {
-                return Amount.from(InputParser.parseAmount(InputView.getAmount()));
+                AmountDto amountDto = InputParser.parseAmount(InputView.getAmount());
+                AmountMapper.toEntity(amountDto);
+                return amountDto;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    private Lotto getWinningNumber() {
+    private WinningNumberDto getWinningNumber() {
         while (true) {
             try {
-                return Lotto.from(InputParser.parseWinningNumbers(InputView.getWinningNumbers()));
+                WinningNumberDto winningNumberDto = InputParser.parseWinningNumbers(InputView.getWinningNumbers());
+                LottoMapper.toEntity(winningNumberDto);
+                return winningNumberDto;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    private BonusNumber getBonusNumber() {
+    private BonusNumberDto getBonusNumber() {
         while (true) {
             try {
-                return BonusNumber.from(InputParser.parseBonusNumber(InputView.getBonusNumber()));
+                BonusNumberDto bonusNumberDto = InputParser.parseBonusNumber(InputView.getBonusNumber());
+                BonusNumberMapper.toEntity(bonusNumberDto);
+                return bonusNumberDto;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-    }
-
-    private List<LottoResponseDto> getLottoResponseDto(List<Lotto> lottery) {
-        return lottery.stream()
-                .map(LottoResponseDto::of)
-                .toList();
     }
 }

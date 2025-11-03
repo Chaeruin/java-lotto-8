@@ -17,10 +17,6 @@ public class BonusNumber {
         return bonusNumber;
     }
 
-    public static BonusNumber from(BonusNumberDto bonusNumberDto) {
-        return new BonusNumber(bonusNumberDto.bonusNumber());
-    }
-
     private void validate(int bonusNumber) {
         if (bonusNumber < LottoNumber.MIN_LOTTO_NUMBER.getNumber()
                 || bonusNumber > LottoNumber.MAX_LOTTO_NUMBER.getNumber()) {

@@ -5,10 +5,11 @@ import lotto.domain.TotalPrize;
 import lotto.enums.Prize;
 
 public record TotalPrizeResponseDto(
-        Map<Prize, Integer> winnings
+        Map<Prize, Integer> winnings,
+        int totalPrizeMoney
 ) {
 
     public static TotalPrizeResponseDto of(TotalPrize totalPrize) {
-        return new TotalPrizeResponseDto(totalPrize.getWinnings());
+        return new TotalPrizeResponseDto(totalPrize.getWinnings(), totalPrize.calculateTotalPrizeAmount());
     }
 }

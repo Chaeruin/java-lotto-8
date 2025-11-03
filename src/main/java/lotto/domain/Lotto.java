@@ -28,10 +28,6 @@ public class Lotto {
         return numbers.contains(number);
     }
 
-    public static Lotto from(WinningNumberDto winningNumberDto) {
-        return new Lotto(winningNumberDto.winningNumbers());
-    }
-
     public static Lotto create(LottoNumberGenerator generator) {
         return new Lotto(generator.generate());
     }

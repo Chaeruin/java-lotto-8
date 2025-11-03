@@ -20,10 +20,6 @@ public class Amount {
         return amount / 1000;
     }
 
-    public static Amount from(AmountDto amountDto) {
-        return new Amount(amountDto.amount());
-    }
-
     private void validate(int amount) {
         validateIsInRange(amount);
         validateCanDivided(amount);

@@ -35,24 +35,14 @@ public class InputParser {
         private static final Pattern VALID_PATTERN = Pattern.compile("^\\d+(,\\d+)*$");
 
         public static void winningNumbersValid(String input) {
-            delimiterParseValid(input);
             parseIntNumbersValid(input);
+            delimiterParseValid(input);
         }
 
         private static void delimiterParseValid(String input) {
             if (!VALID_PATTERN.matcher(input).matches()) {
                 throw new IllegalArgumentException(ParseErrorCode.WINNING_NUMBER_PARSING_ERROR.getErrorMessage());
             }
-
-            Arrays.stream(input.split(","))
-                    .forEach(s -> {
-                        try {
-                            Integer.parseInt(s);
-                        } catch (NumberFormatException e) {
-                            throw new IllegalArgumentException(
-                                    ParseErrorCode.WINNING_NUMBER_PARSING_ERROR.getErrorMessage());
-                        }
-                    });
         }
 
         private static void parseIntNumbersValid(String input) {
@@ -62,7 +52,7 @@ public class InputParser {
                             Integer.parseInt(s);
                         } catch (NumberFormatException e) {
                             throw new IllegalArgumentException(
-                                    ParseErrorCode.WINNING_NUMBER_IS_NOT_INT.getErrorMessage());
+                                    ParseErrorCode.WINNING_NUMBER_PARSING_ERROR.getErrorMessage());
                         }
                     });
         }
