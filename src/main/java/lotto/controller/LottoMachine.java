@@ -12,46 +12,40 @@ import lotto.dto.WinningNumberDto;
 import lotto.mapper.AmountMapper;
 import lotto.mapper.BonusNumberMapper;
 import lotto.mapper.LottoMapper;
+import lotto.service.LottoService;
 import lotto.util.InputParser;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoMachine {
 
-    private final Issue issue;
-    private final ReturnRate returnRate;
-    private final WinningLottery winningLottery;
+    private final LottoService lottoService;
 
-    public LottoMachine(Issue issue, ReturnRate returnRate, WinningLottery winningLottery) {
-        this.issue = issue;
-        this.returnRate = returnRate;
-        this.winningLottery = winningLottery;
+    public LottoMachine(LottoService lottoService) {
+        this.lottoService = lottoService;
     }
 
     public void run() {
         try {
             AmountDto amount = getAmount();
-            List<LottoResponseDto> lottery = LottoMapper.toDto(issue.issueLottery(AmountMapper.toEntity(amount)));
+            List<LottoResponseDto> lottery = lottoService.getLottery(amount);
 
             printLotteryByLottoResponse(lottery, amount);
 
             WinningNumberDto winningNumber = getWinningNumber();
             BonusNumberDto bonusNumber = getBonusNumber();
 
-            TotalPrizeResponseDto totalPrize = TotalPrizeResponseDto.of(winningLottery.getTotalWinnings(
-                            LottoMapper.toEntityList(lottery), LottoMapper.toEntity(winningNumber),
-                            BonusNumberMapper.toEntity(bonusNumber)));
+            TotalPrizeResponseDto totalPrize = lottoService.getTotalPrize(lottery, winningNumber, bonusNumber);
 
-            printResult(totalPrize, amount);
+            printResult(totalPrize, amount, lottoService.getReturnRate(amount, totalPrize));
         } finally {
             InputView.closeConsole();
         }
     }
 
-    private void printResult(TotalPrizeResponseDto totalPrize, AmountDto amount) {
+    private void printResult(TotalPrizeResponseDto totalPrize, AmountDto amount, double returnRate) {
         OutputView.printTotalPrize(totalPrize);
-        OutputView.printReturnRate(returnRate.getReturnRate(
-                AmountMapper.toEntity(amount), totalPrize.totalPrizeMoney()));
+        OutputView.printReturnRate(returnRate);
     }
 
     private void printLotteryByLottoResponse(List<LottoResponseDto> lottoResponseDto, AmountDto amount) {
