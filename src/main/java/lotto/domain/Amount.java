@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.dto.AmountDto;
 import lotto.exception.ValidateErrorCode;
 
 public class Amount {

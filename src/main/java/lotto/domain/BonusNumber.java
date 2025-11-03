@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.dto.BonusNumberDto;
 import lotto.enums.LottoNumber;
 import lotto.exception.ValidateErrorCode;
 

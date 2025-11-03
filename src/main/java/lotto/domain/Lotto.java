@@ -2,7 +2,6 @@ package lotto.domain;
 
 import java.util.Comparator;
 import java.util.List;
-import lotto.dto.WinningNumberDto;
 import lotto.enums.LottoNumber;
 import lotto.exception.ValidateErrorCode;
 
